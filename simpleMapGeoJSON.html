@@ -33,7 +33,7 @@ attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</
 id: 'mapbox.streets'
 }).addTo(mymap);
 // create a geoJSON feature-
-var geojsonFeature = { "type": "Feature", "properties":{ "name": "London", "popupContent": "This is where UCL is based"}, "geometry": {"type":"Point", "coordinates":[-0.118092, 51.509865]}};
+var geojsonFeature = { "type": "Feature", "properties":{ "name": "London ", "popupContent": "This is where UCL is based"}, "geometry": {"type":"Point", "coordinates":[-0.134040, 51.524553]}};
 // and add it to the map
 L.geoJSON(geojsonFeature).addTo(mymap).bindPopup("<b>"+geojsonFeature.properties.name+""+geojsonFeature.properties.popupContent+"<b>");
 </script>
