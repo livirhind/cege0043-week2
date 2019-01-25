@@ -56,7 +56,7 @@ function loadEarthquakelayer(earthquakedata){
 		{
 			pointToLayer: function(feature,latlng)
 			{
-				if(feature.properties.mag > 1.75){return L.marker(latlng, {icon:teatMarkerRed}).bindPopup("<b>" + feature.properties.place + "</b>");
+				if(feature.properties.mag > 1.75){return L.marker(latlng, {icon:testMarkerRed}).bindPopup("<b>" + feature.properties.place + "</b>");
 			        }
 			     else {
 			     	return L.marker(latlng, {icon:testMarkerPink}).bindPopup("<b>" + feature.properties.place + "</b>");;
