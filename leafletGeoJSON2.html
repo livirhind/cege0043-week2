@@ -12,6 +12,10 @@ crossorigin=""></script>
 <style type="text/css">
 #mapid { height: 180px; }
 </style>
+<!-- the following links incorporates the CSS required for custom icon creation -->
+<link rel="stylesheet" href="ionicons.min.css">
+<link rel="stylesheet" href="leaflet.awesome-markers.css">
+<script src="leaflet.awesome-markers.js"></script>
 
 <script>
 // create a variable that will hold the XMLHttpRequest()-this must be done outside the function so that all the functions can use the same variable 
@@ -48,10 +52,21 @@ function loadEarthquakelayer(earthquakedata){
 	//convert the text to JSON
 	var earthquakejson = JSON.parse(earthquakedata);
 	//add the JSON layer onto the map-it will appear using the default icons
-	earthquakelayer = L.geoJSON(earthquakejson).addTo(mymap);
+	earthquakelayer = L.geoJSON(earthquakejson,
+		{
+			pointToLayer: function(feature,latlng)
+			{
+				if(feature.properties.mag > 1.75){return L.marker(latlng, {icon:teatMarkerRed}).bindPopup("<b>" + feature.properties.place + "</b>");
+			        }
+			     else {
+			     	return L.marker(latlng, {icon:testMarkerPink}).bindPopup("<b>" + feature.properties.place + "</b>");;
+			     }
+			     },
+		}).addTo(mymap);
 	//change the map zoom so that all the data is shown
 	mymap.fitBounds(earthquakelayer.getBounds());
 }
+
 </script>
 </head>
 <body>
@@ -70,6 +85,18 @@ attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</
 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 id: 'mapbox.streets'
 }).addTo(mymap);
+
+// adding the following custom markers
+var testMarkerRed = L.AwesomeMarkers.icon({
+	icon: 'play',
+	markerColor: 'red'
+});
+
+var testMarkerPink = L.AwesomeMarkers.icon({
+	icon:'play',
+	markerColor: 'pink'
+
+});
 // adding the map data after the page has been loaded 
 document.addEventListener('DOMContentLoaded', function(){
 	getEarthquakes();
