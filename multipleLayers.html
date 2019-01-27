@@ -21,6 +21,10 @@ crossorigin=""></script>
 		getEarthquakes();
 
 	}
+	//code that will remove the data when the user clicks on this button
+	function removeEarthquakeData(){
+		alert("remove the earthquake data here");
+	}
 	//create a variable that will hold the XMLHttpRequest()- this must be done outside a function so that all the functions can use the same variable
 	var client;
 
@@ -58,6 +62,9 @@ function loadEarthquakelayer(earthquakedata){
 <!-- the following script will load the map and set the default view and zoom, as well as loading the
 basemap tiles -->
 <button id = "loadData" name="loadData" onclick="loadEarthquakeData()">Click here to load the data </button>
+<button id = "removeEarthquakeData" name = "removeEarthquakeData" onclick= "removeEarthquakeData()">Click here to remove the Earthquake data </button>
+
+
 <script>
 // load the map (the last number refers to the scale - the larger the number, the more zoomed in the map is)
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
