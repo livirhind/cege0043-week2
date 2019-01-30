@@ -19,10 +19,8 @@ crossorigin=""></script>
 <div id="mapid" style="width: 1200px; height: 550px;"></div>
 <!-- the following script will load the map and set the default view and zoom, as well as loading the
 basemap tiles -->
-	<b> This code will display your current location </b>
-	<div id='showLocation'>Location will be displayed here</div>
-	<button id= 'trackLocation' onclick= 'trackLocation()'>Click Me to Get Your Location</button>
-	<script>
+
+<script>
 // load the map (the last number refers to the scale - the larger the number, the more zoomed in the map is)
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 // load the tiles
@@ -37,18 +35,22 @@ id: 'mapbox.streets'
 		function trackLocation(){
 			if (navigator.geolocation){
 				navigator.geolocation.watchPosition(showPosition);
-			} else {
-				document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";
-			}
+			} 
+			else {
+				document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";}
 		}
 
 function showPosition(position){
+
+	mymap.on('locationdisplayed',onlocationdisplayed);
+	mymap.locate({setView:true, maxZoom:16});
+	
 	document.getElementById('showLocation').innerHTML = "Latitude: " + position.coords.latitude + 
 	"<br>Longitude: " + position.coords.longitude;
 
 }
 
-function locationdisplayed(e) {
+function onlocationdisplayed(e) {
 	L.marker(e.latlng).bindPopup("You're here").openPopup();
 }
 
