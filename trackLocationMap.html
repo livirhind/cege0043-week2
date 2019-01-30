@@ -26,6 +26,10 @@ function showPosition(position){
 	"<br>Longitude: " + position.coords.longitude;
 
 }
+
+function locationdisplayed(e) {
+	L.marker(e.latlng).bindPopup("You're here").openPopup();
+}
 </script>
 </head>
 <body>
@@ -48,5 +52,8 @@ attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</
 id: 'mapbox.streets'
 }).addTo(mymap);
 </script>
+<b> This code will display your current location </b>
+	<div id='showLocation'>Location will be displayed here</div>
+	<button id= 'trackLocation' onclick= 'trackLocation()'>Click Me to Get Your Location</button>
 </body>
 </html>
