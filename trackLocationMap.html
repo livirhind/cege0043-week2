@@ -12,25 +12,7 @@ crossorigin=""></script>
 <style type="text/css">
 #mapid { height: 180px; }
 </style>
-	<script>
-		function trackLocation(){
-			if (navigator.geolocation){
-				navigator.geolocation.watchPosition(showPosition);
-			} else {
-				document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";
-			}
-		}
 
-function showPosition(position){
-	document.getElementById('showLocation').innerHTML = "Latitude: " + position.coords.latitude + 
-	"<br>Longitude: " + position.coords.longitude;
-
-}
-
-function locationdisplayed(e) {
-	L.marker(e.latlng).bindPopup("You're here").openPopup();
-}
-</script>
 </head>
 <body>
 <!-- the mapid div will hold the map -->
@@ -51,6 +33,25 @@ attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</
 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 id: 'mapbox.streets'
 }).addTo(mymap);
+
+		function trackLocation(){
+			if (navigator.geolocation){
+				navigator.geolocation.watchPosition(showPosition);
+			} else {
+				document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";
+			}
+		}
+
+function showPosition(position){
+	document.getElementById('showLocation').innerHTML = "Latitude: " + position.coords.latitude + 
+	"<br>Longitude: " + position.coords.longitude;
+
+}
+
+function locationdisplayed(e) {
+	L.marker(e.latlng).bindPopup("You're here").openPopup();
+}
+
 </script>
 <b> This code will display your current location </b>
 	<div id='showLocation'>Location will be displayed here</div>
