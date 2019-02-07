@@ -17,7 +17,7 @@ crossorigin=""></script>
 <body>
 <!-- the mapid div will hold the map -->
 <div id="mapid" style="width: 1200px; height: 550px;"></div>
-<button id= 'trackLocation' onclick= 'trackLocation()'>Click Me to Get Your Location</button>
+
 <!-- the following script will load the map and set the default view and zoom, as well as loading the
 basemap tiles -->
 
@@ -43,14 +43,14 @@ id: 'mapbox.streets'
 		}
 
          function showPosition(position){
-            L.marker([position.coords.latitude, position.coords.longitude]).addTo(myMap).bindPopup("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude).openPopup();
-        }
+	         L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
+            }
 
 		
 
 </script>
 <b> This code will display your current location </b>
 	<div id='showLocation'>Location will be displayed here</div>
-	
+	<button id= 'trackLocation' onclick= 'trackLocation()'>Click Me to Get Your Location</button>
 </body>
 </html>
