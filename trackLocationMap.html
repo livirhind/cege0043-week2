@@ -17,6 +17,7 @@ crossorigin=""></script>
 <body>
 <!-- the mapid div will hold the map -->
 <div id="mapid" style="width: 1200px; height: 550px;"></div>
+<button id= 'trackLocation' onclick= 'trackLocation()'>Click Me to Get Your Location</button>
 <!-- the following script will load the map and set the default view and zoom, as well as loading the
 basemap tiles -->
 
@@ -31,32 +32,25 @@ attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</
 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 id: 'mapbox.streets'
 }).addTo(mymap);
-
-		function trackLocation(){
+	function trackLocation(){
 			if (navigator.geolocation){
 				navigator.geolocation.watchPosition(showPosition);
+				alert("Current Position Loading");
+				showPosition();
 			} 
 			else {
 				document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";}
 		}
 
-function showPosition(position){
+         function showPosition(position){
+            L.marker([position.coords.latitude, position.coords.longitude]).addTo(myMap).bindPopup("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude).openPopup();
+        }
 
-	mymap.on('locationdisplayed',onlocationdisplayed);
-	mymap.locate({setView:true, maxZoom:16});
-	
-	document.getElementById('showLocation').innerHTML = "Latitude: " + position.coords.latitude + 
-	"<br>Longitude: " + position.coords.longitude;
-
-}
-
-function onlocationdisplayed(e) {
-	L.marker(e.latlng).bindPopup("You're here").openPopup();
-}
+		
 
 </script>
 <b> This code will display your current location </b>
 	<div id='showLocation'>Location will be displayed here</div>
-	<button id= 'trackLocation' onclick= 'trackLocation()'>Click Me to Get Your Location</button>
+	
 </body>
 </html>
